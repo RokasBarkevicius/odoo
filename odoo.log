@@ -3740,3 +3740,34 @@ View error context:
 2023-06-29 11:16:54,975 23900 INFO test werkzeug: 127.0.0.1 - - [29/Jun/2023 11:16:54] "POST /web/dataset/call_kw/res.partner/name_search HTTP/1.1" 200 - 8 0.006 0.016
 2023-06-29 11:17:01,437 23900 INFO test werkzeug: 127.0.0.1 - - [29/Jun/2023 11:17:01] "POST /web/dataset/call_kw/estate.property.offer/onchange HTTP/1.1" 200 - 1 0.000 0.008
 2023-06-29 11:17:07,189 23900 INFO test werkzeug: 127.0.0.1 - - [29/Jun/2023 11:17:07] "POST /web/dataset/call_kw/res.partner/name_search HTTP/1.1" 200 - 8 0.008 0.024
+2023-06-29 11:22:40,598 25399 INFO ? odoo: Odoo version 16.0 
+2023-06-29 11:22:40,599 25399 INFO ? odoo: Using configuration file at /home/qwerty/odoo/odoo.conf 
+2023-06-29 11:22:40,599 25399 INFO ? odoo: addons paths: ['/home/qwerty/odoo/odoo/addons', '/home/qwerty/.local/share/Odoo/addons/16.0', '/home/qwerty/odoo/addons', '/home/qwerty/odoo/test_addons'] 
+2023-06-29 11:22:40,600 25399 INFO ? odoo: database: default@default:default 
+2023-06-29 11:22:41,113 25399 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2023-06-29 11:22:41,661 25399 INFO ? odoo.service.server: HTTP service (werkzeug) running on OLDLENOVO.baltship.local:8069 
+2023-06-29 11:22:41,681 25399 INFO test odoo.modules.loading: loading 1 modules... 
+2023-06-29 11:22:41,700 25399 INFO test odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2023-06-29 11:22:41,775 25399 INFO test odoo.modules.loading: updating modules list 
+2023-06-29 11:22:41,780 25399 INFO test odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2023-06-29 11:22:42,465 25399 WARNING test odoo.modules.module: Missing `license` key in manifest for 'estate', defaulting to LGPL-3 
+2023-06-29 11:22:44,000 25399 INFO test odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Real Estate'] to user __system__ #1 via n/a 
+2023-06-29 11:22:44,001 25399 INFO test odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Real Estate'] to user __system__ #1 via n/a 
+2023-06-29 11:22:45,168 25399 INFO test odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
+2023-06-29 11:22:45,233 25399 INFO test odoo.modules.loading: loading 73 modules... 
+2023-06-29 11:22:45,233 25399 INFO test odoo.modules.loading: Loading module estate (2/73) 
+2023-06-29 11:22:45,371 25399 INFO test odoo.modules.registry: module estate: creating or updating database tables 
+2023-06-29 11:22:45,625 25399 INFO test odoo.modules.loading: loading estate/security/ir.model.access.csv 
+2023-06-29 11:22:45,658 25399 INFO test odoo.modules.loading: loading estate/views/estate_menus.xml 
+2023-06-29 11:22:45,727 25399 INFO test odoo.modules.loading: loading estate/views/estate_property_views.xml 
+2023-06-29 11:22:45,782 25399 INFO test odoo.modules.loading: loading estate/views/estate_property_type_views.xml 
+2023-06-29 11:22:45,803 25399 INFO test odoo.modules.loading: loading estate/views/estate_property_tag_views.xml 
+2023-06-29 11:22:45,822 25399 INFO test odoo.modules.loading: loading estate/views/estate_property_offer_views.xml 
+2023-06-29 11:22:45,878 25399 INFO test odoo.modules.loading: Module estate loaded in 0.65s, 196 queries (+196 other) 
+2023-06-29 11:22:47,527 25399 INFO test odoo.modules.loading: 73 modules loaded in 2.29s, 196 queries (+196 extra) 
+2023-06-29 11:22:48,670 25399 INFO test odoo.modules.registry: verifying fields for every extended model 
+2023-06-29 11:22:49,575 25399 INFO test odoo.modules.loading: Modules loaded. 
+2023-06-29 11:22:49,590 25399 INFO test odoo.modules.registry: Registry loaded in 7.929s 
+2023-06-29 11:22:49,610 25399 INFO test odoo.addons.base.models.ir_http: Generating routing map for key 1 
+2023-06-29 11:22:50,496 25399 INFO test werkzeug: 127.0.0.1 - - [29/Jun/2023 11:22:50] "GET /websocket HTTP/1.1" 101 - 16 0.012 2.618
+2023-06-29 11:22:50,509 25399 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
