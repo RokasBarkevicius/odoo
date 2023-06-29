@@ -10,6 +10,7 @@ class EstatePropertyOffer(models.Model):
         selection=[('accepted', 'Accepted'), ('refused', 'Refused')],
         help="Status is used to define the status of the offer",
         copy=False,
+        readonly=True,
     )
     partner_id = fields.Many2one("res.partner", string = "Offeror",required=True)
     property_id = fields.Many2one("estate.property", string = "Property",required=True)
@@ -23,4 +24,4 @@ class EstatePropertyOffer(models.Model):
 
     def _inverse_date_deadline(self):
         for record in self:
-            record.date_deadline = fields.Date()
+            record.validity = (record.date_deadline - fields.Date.today()).days
