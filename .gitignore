@@ -6,7 +6,6 @@ _build/
 !.gitignore
 !.github
 !.mailmap
-*.log
 # compiled python files
 *.py[co]
 __pycache__/
@@ -48,3 +47,4 @@ package.json
 /man/
 /share/
 /src/
+odoo.log
