@@ -2,7 +2,7 @@ from odoo import fields, models
 
 class EstateProperty(models.Model):
     _name = "estate.property"
-    _description = "estatte properties"
+    _description = "estate properties"
 
     name = fields.Char(required=True)
     description = fields.Text()
@@ -25,8 +25,13 @@ class EstateProperty(models.Model):
     state = fields.Selection(
         string = "State",
         selection=[('new', 'New'), ('offer_received', 'Offer Received'),('offer_accepted', 'Offer Accepted'),('sold', 'Sold'),('canceled', 'Canceled')],
-        help="State is used to define state of property",
+        help="State is used to define the state of property",
         required=True,
         default="new",
         copy=False,
     )
+    property_type_id = fields.Many2one("estate.property.type", string="Type")
+    buyer = fields.Many2one("res.partner", string = "Buyer",copy=False)
+    seller = fields.Many2one("res.users", string = "Salesman",default =lambda self: self.env.user)
+    tags_ids = fields.Many2many("estate.property.tag", string="Tags")
+    offer_ids = fields.One2many("estate.property.offer", "property_id")
