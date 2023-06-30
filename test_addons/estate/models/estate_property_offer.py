@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
@@ -17,6 +18,10 @@ class EstatePropertyOffer(models.Model):
     validity = fields.Integer(default = 7, string = "Validity (days)")
     date_deadline = fields.Date(compute = "_compute_date_deadline", inverse = "_inverse_date_deadline")
 
+    _sql_constraints = [
+        ('check_offer_price', 'CHECK(price > 0)', 'The offer price must be positive.'),
+    ]
+
     @api.depends("validity")
     def _compute_date_deadline(self):
         for record in self:
@@ -25,3 +30,20 @@ class EstatePropertyOffer(models.Model):
     def _inverse_date_deadline(self):
         for record in self:
             record.validity = (record.date_deadline - fields.Date.today()).days
+
+    
+    def action_confirm(self):
+        for record in self:
+            if any(o.status == 'accepted' for o in record.property_id.offer_ids):
+                raise UserError("Only one offer can be accepted per property")
+            else:
+                record.status = "accepted"
+                record.property_id.selling_price = self.price
+                record.property_id.buyer = self.partner_id
+        return True
+    
+    def action_refuse(self):
+        for record in self:
+            record.status = "refused"
+        return True
+    

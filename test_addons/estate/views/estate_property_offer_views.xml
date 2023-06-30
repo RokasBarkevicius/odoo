@@ -25,9 +25,12 @@
             <tree>
                 <field name="price"/>
                 <field name="partner_id"/>
-                <field name="status"/>
                 <field name="validity"/>
                 <field name="date_deadline"/>
+                <button name="action_confirm" type="object" title="accept" icon="fa-check"/>
+                <button name="action_refuse" type="object" title="accept"  icon="fa-times"/>
+                <field name="status"/>
+
             </tree>
         </field>
     </record>
