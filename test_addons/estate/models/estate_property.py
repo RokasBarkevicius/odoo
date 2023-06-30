@@ -5,6 +5,7 @@ from odoo.tools.float_utils import float_compare, float_is_zero
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "estate properties"
+    _order = "id desc"
 
     name = fields.Char(required=True)
     description = fields.Text()
@@ -31,6 +32,7 @@ class EstateProperty(models.Model):
         required=True,
         default="new",
         copy=False,
+        readonly=True,
     )
     property_type_id = fields.Many2one("estate.property.type", string="Type")
     buyer = fields.Many2one("res.partner", string = "Buyer",copy=False)
@@ -39,7 +41,6 @@ class EstateProperty(models.Model):
     offer_ids = fields.One2many("estate.property.offer", "property_id")
     total_area = fields.Integer(compute="_compute_total_area", string="Total Area (sqm)")
     best_price = fields.Float(compute="_compute_best_offer")
-
 
     _sql_constraints = [
         ('check_expected_price', 'CHECK(expected_price > 0)', 'The expected price must be positive.'),
@@ -63,9 +64,6 @@ class EstateProperty(models.Model):
         if (self.garden == True ):
             self.garden_area = 10
             self.garden_orientation = "north"
-            return {'warning': {
-                'title': ("Change Warning"),
-                'message': ('This property now has a garden')}}
         else:          
             self.garden_area = 0
             self.garden_orientation = ""
