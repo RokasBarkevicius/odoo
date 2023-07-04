@@ -6,6 +6,9 @@ class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "estate property offers"
     _order = "price desc"
+    _sql_constraints = [
+        ('check_offer_price', 'CHECK(price > 0)', 'The offer price must be positive.'),
+    ]
 
     price = fields.Float()
     status = fields.Selection(
@@ -13,23 +16,19 @@ class EstatePropertyOffer(models.Model):
         selection=[('accepted', 'Accepted'), ('refused', 'Refused')],
         help="Status is used to define the status of the offer",
         copy=False,
-        readonly=True,
-    )
+        readonly=True,)
     partner_id = fields.Many2one("res.partner", string = "Offeror",required=True)
     property_id = fields.Many2one("estate.property", string = "Property",required=True)
     validity = fields.Integer(default = 7, string = "Validity (days)")
     date_deadline = fields.Date(compute = "_compute_date_deadline", inverse = "_inverse_date_deadline")
-
     property_type_id= fields.Many2one("estate.property.type", related="property_id.property_type_id", store=True)
 
-    _sql_constraints = [
-        ('check_offer_price', 'CHECK(price > 0)', 'The offer price must be positive.'),
-    ]
 
     @api.depends("validity")
     def _compute_date_deadline(self):
         for record in self:
             record.date_deadline = fields.Datetime.add(fields.Datetime.now(), days=record.validity)
+
 
     def _inverse_date_deadline(self):
         for record in self:
@@ -47,11 +46,7 @@ class EstatePropertyOffer(models.Model):
                 record.property_id.state = 'offer_accepted'
         return True
     
-    def action_refuse(self):
-        for record in self:
-            record.status = "refused"
-        return True
-    
+
     @api.model
     def create(self, vals):
         property = self.env['estate.property'].browse(vals['property_id'])
@@ -60,3 +55,9 @@ class EstatePropertyOffer(models.Model):
                 raise UserError("New offer must be higher than existing offers")
         property.state = 'offer_received'
         return super().create(vals)
+    
+
+    def action_refuse(self):
+        for record in self:
+            record.status = "refused"
+        return True
