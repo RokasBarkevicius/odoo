@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_contatcs_new" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <field name="upload_file" filename="file_name"/>
+                    <!-- <button name="contacts_upload"  type="object" string="Upload new"/> -->
+                </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+<!-- <odoo>
+    <record id="res_partner_kanban_view" model="ir.ui.view">
+        <field name="name">res.partner.kanban.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <kanban>
+                    <templates>
+                        <t t-name="kanban_box">
+                            <div class="oe_kanban_global_click">
+                                <button name="contacts_upload" type="object" class="oe_kanban_action oe_kanban_action_control"  string="Perfom Action"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+        </field>
+    </record>
+
+    <record id="contacts_upload" model="ir.actions.server">
+        <field name="name">res_partner_upload_action</field>
+        <field name="model_id" ref="base.res_partner_kanban_view"/>
+        <field name="state">code</field>
+        <field name="code">
+            print("hello")
+        </field>
+    </record>
+</odoo> -->
